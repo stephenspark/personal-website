@@ -1,14 +1,10 @@
 version: "3.8"
+
 services:
   frontend:
-    image: personal-website-frontend
+    image: personal-website-frontend-prod
     build:
       context: .
       dockerfile: Dockerfile
-    volumes:
-      - /app/node_modules
-      - .:/app
     ports:
-      - 3001:3000
-    environment:
-      - WATCHPACK_POLLING=true
+      - 8080:80
