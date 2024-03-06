@@ -5,8 +5,7 @@ WORKDIR /app
 
 COPY package.json .
 
-RUN npm install --silent && \
-    npm install react-scripts@5.0.1 -g --silent
+RUN npm install --silent
 
 COPY . .
 
