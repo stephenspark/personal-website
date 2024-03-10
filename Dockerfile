@@ -1,23 +1,42 @@
 # Latest stable node on alpine image
-FROM node:20.11.1-alpine AS builder
+FROM node:20.11.1-alpine AS base
+
+ENV NODE_ENV production
+
+# Install all node_modules, including dev dependencies
+FROM base AS deps
 
 WORKDIR /app
 
-COPY package.json .
+ADD package*.json ./
+RUN npm install --include=dev
 
-RUN npm install --silent
+# Setup production node_modules
+FROM base AS production-deps
 
-COPY . .
+WORKDIR /app
 
+COPY --from=deps /app/node_modules /app/node_modules
+ADD package*.json ./
+RUN npm prune --omit=dev
+
+# Build the app
+FROM base AS build
+
+WORKDIR /app
+
+COPY --from=deps /app/node_modules /app/node_modules
+ADD . .
 RUN npm run build
 
-FROM nginx:1.25.4-alpine AS production
-ENV NODE_ENV production
+# Build the production image with minimal footprint
+FROM base
 
-COPY --from=builder /app/build /usr/share/nginx/html
+WORKDIR /app
 
-COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=production-deps /app/node_modules /app/node_modules
+COPY --from=build /app/build /app/build
+COPY --from=build /app/public /app/public
+ADD . .
 
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "start"]

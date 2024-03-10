@@ -1,20 +1,10 @@
 ### Docker
 
 
-## Build image (DEV)
-docker build -t personal-website-frontend-dev -f Dockerfile.dev .
-OR
-docker-compose -f docker-compose.dev.yml build
-
-## Build image (PROD)
-docker build -t personal-website-frontend-prod -f Dockerfile .
-OR
+## Build image
 docker-compose build
 
-## Run Containers (DEV)
-docker-compose -f docker-compose.dev.yml up
-
-## Run Containers (PROD)
+## Run Containers
 docker-compose up
 
 
@@ -24,19 +14,12 @@ docker-compose up
 ## Authenticate into ECR
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 199545413709.dkr.ecr.us-east-1.amazonaws.com
 
-## Push Docker image to ECR (DEV)
-docker tag personal-website-frontend-dev 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend-dev
-docker push 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend-dev
+## Push Docker image to ECR
+docker tag personal-website-frontend 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend
+docker push 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend
 
-## Push Docker image to ECR (PROD)
-docker tag personal-website-frontend-prod 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend-prod
-docker push 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend-prod
-
-## Pull Docker image from ECR (DEV)
-docker pull 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend-dev
-
-## Pull Docker image from ECR (PROD)
-docker pull 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend-prod
+## Pull Docker image from ECR
+docker pull 199545413709.dkr.ecr.us-east-1.amazonaws.com/personal-website-frontend
 
 
 ### ECS (automate this away with Github Actions eventually)
