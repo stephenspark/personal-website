@@ -1,13 +1,7 @@
-import type { MetaFunction } from '@remix-run/node'
-
-export const meta: MetaFunction = () => {
-  return [{ title: 'Blog' }, { name: 'description', content: 'blog' }]
-}
-
 export default function Blog() {
   return (
-    <div id="blog">
-      <div>Blog page</div>
+    <div id="blog" className="prose prose-lg dark:prose-invert">
+      <h1>Blog</h1>
     </div>
   )
 }
