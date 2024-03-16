@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  personal-website-frontend:
+    image: personal-website-frontend:dev
+    container_name: personal-website-frontend
+    networks:
+      - personalwebsite
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+      - 3100:3100
+    environment:
+      - API_KEY=${API_KEY}
+      - CHOKIDAR_USEPOLLING=true
+
+networks:
+  personalwebsite:
+    name: personalwebsite

@@ -18,7 +18,7 @@ import {
   useSubmit,
 } from '@remix-run/react'
 
-import Hamburger from '../app/components/hamburger'
+import Hamburger from './components/hamburger'
 import Cogwheel from './components/cogwheel'
 import DarkMode from './components/darkmode'
 import styles from './tailwind.css'
@@ -41,9 +41,12 @@ export async function loader({ request }: LoaderFunctionArgs) {
   const cookieHeader = request.headers.get('Cookie')
   const cookie = (await userPrefs.parse(cookieHeader)) || {}
 
+  const healthcheck = await fetch(`${process.env.API_URL}/healthcheck`)
+
   return json({
     sidebarEnabled: cookie.sidebarEnabled,
     darkmodeEnabled: cookie.darkmodeEnabled,
+    healthcheck: await healthcheck.json(),
   })
 }
 

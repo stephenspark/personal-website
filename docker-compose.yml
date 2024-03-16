@@ -1,8 +1,9 @@
-version: "3.8"
+version: "3.9"
 
 services:
-  app:
+  personal-website-frontend:
     image: personal-website-frontend
+    container_name: personal-website-frontend
     build:
       context: ./
       dockerfile: Dockerfile
