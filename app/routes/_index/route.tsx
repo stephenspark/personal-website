@@ -9,19 +9,17 @@ export default function Index() {
           className="w-64"
         ></img>
         <p>
-          My name is <b>Stephen Park</b>. I am a remote{' '}
-          <b>Senior Software Engineer</b> based out of <b>Seattle</b>.
+          Hello! I&apos;m <b>Stephen Park</b>, a remote{' '}
+          <b>Senior Software Engineer</b> based out of{' '}
+          <b>Seattle, Washington</b>.
         </p>
         <p>
-          I am a proven self starter. Back end focused, full stack capable.
-          Extensive working experience with <strong>Node.js</strong> coupled
-          with <strong>Ruby on Rails</strong> and <strong>Golang</strong>.
-          Familiar with cloud services like <strong>Azure</strong> and{' '}
-          <strong>AWS</strong>. Proficient with both RDBMS (
-          <strong>SQL Server</strong> and <strong>Postgres</strong>) and NoSQL (
-          <strong>DynamoDB</strong> and <strong>MongoDB</strong>). Rounded out
-          with <strong>React.js/Typescript</strong> and <strong>Vue.js</strong>{' '}
-          experience on the front end.
+          With a focus on backend development and full-stack proficiency, I
+          bring extensive experience in Node.js, Ruby on Rails, and Golang. My
+          skills extend to cloud services like Azure and AWS, alongside
+          expertise in both RDBMS (SQL Server, Postgres) and NoSQL databases
+          (DynamoDB, MongoDB). On the frontend, I&apos;m adept with
+          React.js/Typescript and Vue.js.
         </p>
         <p>
           I enjoy trying out new frameworks and tools, foreign language
@@ -30,7 +28,14 @@ export default function Index() {
         <p>
           For more detailed information, check out my{' '}
           <b>
-            <u>resume</u>!
+            <a
+              href="https://stephen-park-personal-website-public.s3.amazonaws.com/assets/current_resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+            >
+              resume
+            </a>
+            !
           </b>
         </p>
       </article>

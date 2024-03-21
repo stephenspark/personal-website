@@ -6,10 +6,10 @@ import type {
 } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
 import {
-  Link,
   Links,
   LiveReload,
   Meta,
+  NavLink,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -18,9 +18,9 @@ import {
   useSubmit,
 } from '@remix-run/react'
 
-import Hamburger from './components/hamburger'
-import Cogwheel from './components/cogwheel'
-import DarkMode from './components/darkmode'
+import Hamburger from './components/ui/hamburger'
+import Cogwheel from './components/ui/cogwheel'
+import DarkMode from './components/ui/darkmode'
 import styles from './tailwind.css'
 
 export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }]
@@ -105,13 +105,25 @@ export default function App() {
               {data.sidebarEnabled && (
                 <ul>
                   <li>
-                    <Link to="/">Home</Link>
+                    <NavLink to="/" className="aria-[current=page]:font-bold">
+                      Home
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to="/blog">Blog</Link>
+                    <NavLink
+                      to="/blog"
+                      className="aria-[current=page]:font-bold"
+                    >
+                      Blog
+                    </NavLink>
                   </li>
                   <li>
-                    <Link to="/photography">Photography</Link>
+                    <NavLink
+                      to="/photography"
+                      className="aria-[current=page]:font-bold"
+                    >
+                      Photography
+                    </NavLink>
                   </li>
                   <div
                     id="sidebar-footer"
@@ -128,9 +140,9 @@ export default function App() {
                     >
                       <DarkMode enabled={data.darkmodeEnabled} />
                     </button>
-                    <Link to="/settings" className="hover:animate-spin">
+                    <NavLink to="/settings" className="hover:animate-spin">
                       <Cogwheel />
-                    </Link>
+                    </NavLink>
                   </div>
                 </ul>
               )}
