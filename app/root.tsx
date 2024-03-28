@@ -18,6 +18,7 @@ import {
   useSubmit,
 } from '@remix-run/react'
 
+import Loading from './components/ui/loading'
 import Hamburger from './components/ui/hamburger'
 import Cogwheel from './components/ui/cogwheel'
 import DarkMode from './components/ui/darkmode'
@@ -85,6 +86,7 @@ export default function App() {
         <Links />
       </head>
       <body className="bg-gray-50 dark:bg-gray-950">
+        <Loading />
         <div className="grid grid-cols-8 gap-4">
           <div
             id="sidebar"
