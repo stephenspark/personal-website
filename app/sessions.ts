@@ -30,6 +30,7 @@ export async function retrieveSessionUserData(
     return redirect('/login')
   }
 
+  // TODO: Cache this because this is horrendous otherwise
   const response = await fetch(`${process.env.API_URL}/users/session/user`, {
     method: 'get',
     headers: {
@@ -48,8 +49,8 @@ export async function retrieveSessionUserData(
     lastName: responseData.last_name,
     fullName: `${responseData.first_name} ${responseData.last_name}`,
     email: responseData.email,
-    avatarUrl: `${responseData.avatar_url}`,
-    createdAt: `${responseData.created_at}`,
+    avatarUrl: responseData.avatar_url,
+    createdAt: responseData.created_at,
   } as ISessionUser
 }
 
