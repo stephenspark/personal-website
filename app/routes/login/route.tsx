@@ -4,7 +4,7 @@ import { Form, useActionData } from '@remix-run/react'
 
 import setCookie from 'set-cookie-parser'
 
-import { getSession, commitSession } from '../../sessions'
+import { getSession, commitSession } from '~/sessions'
 
 interface ILoginError {
   email: string
@@ -56,7 +56,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   if (response.status !== 200) {
     return json({
-      errors: {} as ILoginError,
+      errors: errors,
       message: responseData.message,
     })
   }
@@ -65,7 +65,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   if (!setCookieHeader) {
     return json({
-      errors: {} as ILoginError,
+      errors: errors,
       message: 'Set cookie not found >:(',
     })
   }
@@ -80,7 +80,7 @@ export async function action({ request }: ActionFunctionArgs) {
 
   if (!sessionIdCookie) {
     return json({
-      errors: {} as ILoginError,
+      errors: errors,
       message: 'SessionId not found >:(',
     })
   }
