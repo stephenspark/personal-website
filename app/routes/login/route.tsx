@@ -100,7 +100,7 @@ export default function Login() {
 
   return (
     <div id="login" className="prose prose-lg dark:prose-invert">
-      <h1>Login</h1>
+      <h2>Login</h2>
       <Form method="post">
         <p>
           <input type="email" name="email" />

@@ -2,7 +2,7 @@ import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
 import { json } from '@remix-run/node'
 import { Link, useFetcher, useLoaderData } from '@remix-run/react'
 import { getSession, retrieveSessionUserData } from '~/sessions'
-import Avatar from '~/components/ui/avatar'
+import Avatar from '~/components/ui/Avatar'
 
 interface IUpdateError {
   firstName: string
@@ -93,133 +93,119 @@ export default function Settings() {
 
   return (
     <div id="settings" className="prose prose-lg dark:prose-invert">
-      <h1>Settings</h1>
-      <h2>Profile</h2>
-      <h3>Avatar</h3>
+      <h2>Settings</h2>
+      <p>
+        Hello! You are currently logged in as {data.firstName} {data.lastName} (
+        {data.email})
+      </p>
+      <Link to="/logout">Logout</Link>
+      <h3>Profile</h3>
+      <h4>Avatar</h4>
       <fetcher.Form method="post">
         <div className="flex flex-col">
           <input type="hidden" name="uuid" value={data.uuid} />
           {!data.avatarUrl && <Avatar />}
           {data.avatarUrl && <p>{data.avatarUrl}</p>}
-          <input type="file" name="avatar" />
+          <input
+            type="file"
+            name="avatar"
+            className="file-input file-input-bordered w-full max-w-xs"
+          />
         </div>
       </fetcher.Form>
-      <h3>Information</h3>
+      <hr />
+      <h4>Information</h4>
       <fetcher.Form method="post">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           <input type="hidden" name="uuid" value={data.uuid} />
-          <label
-            htmlFor="firstName"
-            className="text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="input input-bordered flex items-center gap-2">
             First Name
+            <input
+              type="text"
+              name="firstName"
+              maxLength={255}
+              minLength={1}
+              defaultValue={data.firstName}
+              className="grow"
+            />
           </label>
-          <input
-            type="text"
-            name="firstName"
-            maxLength={255}
-            minLength={1}
-            defaultValue={data.firstName}
-            className="w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-          <label
-            htmlFor="lastName"
-            className="text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="input input-bordered flex items-center gap-2">
             Last Name
+            <input
+              type="text"
+              name="lastName"
+              maxLength={255}
+              minLength={1}
+              defaultValue={data.lastName}
+              className="grow"
+            />
           </label>
-          <input
-            type="text"
-            name="lastName"
-            maxLength={255}
-            minLength={1}
-            defaultValue={data.lastName}
-            className="w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-          <label
-            htmlFor="email"
-            className="text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="input input-bordered flex items-center gap-2">
             Email
+            <input
+              type="email"
+              name="email"
+              maxLength={255}
+              minLength={1}
+              defaultValue={data.email}
+              className="grow"
+            />
           </label>
-          <input
-            type="email"
-            name="email"
-            maxLength={255}
-            minLength={1}
-            defaultValue={data.email}
-            className="w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+          <button
+            type="submit"
+            name="_action"
+            value="updateInformation"
+            className="btn"
+          >
+            Update Information
+          </button>
         </div>
-        <button
-          type="submit"
-          name="_action"
-          value="updateInformation"
-          className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-        >
-          Update Information
-        </button>
       </fetcher.Form>
-      <h3>Password</h3>
+      <hr />
+      <h4>Password</h4>
       <fetcher.Form method="post">
-        <div className="flex flex-col">
+        <div className="flex flex-col gap-4">
           <input type="hidden" name="uuid" value={data.uuid} />
-          <label
-            htmlFor="currentPassword"
-            className="text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="input input-bordered flex items-center gap-2">
             Current Password
+            <input
+              type="password"
+              name="currentPassword"
+              maxLength={255}
+              minLength={1}
+              className="grow"
+            />
           </label>
-          <input
-            type="password"
-            name="currentPassword"
-            maxLength={255}
-            minLength={1}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-          <label
-            htmlFor="newPassword"
-            className="text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="input input-bordered flex items-center gap-2">
             New Password
+            <input
+              type="password"
+              name="newPassword"
+              maxLength={255}
+              minLength={1}
+              className="grow"
+            />
           </label>
-          <input
-            type="password"
-            name="newPassword"
-            maxLength={255}
-            minLength={1}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
-          <label
-            htmlFor="confirmNewPassword"
-            className="text-sm font-medium leading-6 text-gray-900"
-          >
+          <label className="input input-bordered flex items-center gap-2">
             Confirm New Password
+            <input
+              type="password"
+              name="confirmNewPassword"
+              maxLength={255}
+              minLength={1}
+              className="grow"
+            />
           </label>
-          <input
-            type="password"
-            name="confirmNewPassword"
-            maxLength={255}
-            minLength={1}
-            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-          />
+          <button
+            type="submit"
+            name="_action"
+            value="updatePassword"
+            className="btn"
+          >
+            Update Password
+          </button>
         </div>
-        <button
-          type="submit"
-          name="_action"
-          value="updatePassword"
-          className="rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-        >
-          Update Password
-        </button>
       </fetcher.Form>
-      <div>
-        <ul>
-          <li>
-            <Link to="/logout">Logout</Link>
-          </li>
-        </ul>
-      </div>
     </div>
   )
 }

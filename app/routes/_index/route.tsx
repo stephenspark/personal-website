@@ -2,7 +2,7 @@ export default function Index() {
   return (
     <div>
       <article className="prose lg:prose-xl dark:prose-invert">
-        <h1>Hello</h1>
+        <h2>Hello</h2>
         <img
           src="https://stephen-park-personal-website-public.s3.amazonaws.com/assets/headshot.jpg"
           alt="headshot"
@@ -27,16 +27,15 @@ export default function Index() {
         </p>
         <p>
           For more detailed information, check out my{' '}
-          <b>
-            <a
-              href="https://stephen-park-personal-website-public.s3.amazonaws.com/assets/current_resume.pdf"
-              target="_blank"
-              rel="noreferrer"
-            >
-              resume
-            </a>
-            !
-          </b>
+          <a
+            href="https://stephen-park-personal-website-public.s3.amazonaws.com/assets/current_resume.pdf"
+            target="_blank"
+            rel="noreferrer"
+            className="link"
+          >
+            resume
+          </a>
+          !
         </p>
       </article>
     </div>

@@ -16,7 +16,7 @@ export default function Logout() {
 
   return (
     <div id="logout" className="prose prose-lg dark:prose-invert">
-      <h1>Logout</h1>
+      <h2>Logout</h2>
       <p>
         You are currently logged in as {loaderData.fullName} ({loaderData.email}
         )

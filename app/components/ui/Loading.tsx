@@ -21,8 +21,6 @@ export default function Loading() {
   return (
     <div
       role="progressbar"
-      aria-hidden={!active}
-      aria-valuetext={active ? 'Loading' : undefined}
       className="fixed inset-x-0 top-0 z-50 h-1 animate-pulse"
     >
       <div
