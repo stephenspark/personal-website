@@ -1,13 +1,16 @@
 export default function Index() {
   return (
     <div>
-      <article className="prose lg:prose-xl dark:prose-invert">
+      <article className="prose dark:prose-invert">
         <h2>Hello</h2>
-        <img
-          src="https://stephen-park-personal-website-public.s3.amazonaws.com/assets/headshot.jpg"
-          alt="headshot"
-          className="w-64"
-        ></img>
+        <div className="avatar">
+          <div className="w-64 rounded">
+            <img
+              src="https://stephen-park-personal-website-public.s3.amazonaws.com/assets/headshot.jpg"
+              alt="headshot"
+            />
+          </div>
+        </div>
         <p>
           Hello! I&apos;m <b>Stephen Park</b>, a remote{' '}
           <b>Senior Software Engineer</b> based out of{' '}
