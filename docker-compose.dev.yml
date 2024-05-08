@@ -1,11 +1,11 @@
 version: "3.9"
 
 services:
-  personal-website-frontend:
-    image: personal-website-frontend:dev
-    container_name: personal-website-frontend
+  photography-portfolio-frontend:
+    image: photography-portfolio-frontend:dev
+    container_name: photography-portfolio-frontend
     networks:
-      - personalwebsite
+      - photographyportfolio
     build:
       context: ./
       dockerfile: Dockerfile.dev
@@ -20,5 +20,5 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
 networks:
-  personalwebsite:
-    name: personalwebsite
+  photographyportfolio:
+    name: photographyportfolio

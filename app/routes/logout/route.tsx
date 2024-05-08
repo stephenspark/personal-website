@@ -23,7 +23,7 @@ export default function Logout() {
       </p>
       <p>Are you sure you want to log out?</p>
       <Form method="post">
-        <button>Logout</button>
+        <button className="btn">Logout</button>
       </Form>
     </div>
   )

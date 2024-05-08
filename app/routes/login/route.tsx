@@ -1,10 +1,12 @@
+import React from 'react'
 import type { ActionFunctionArgs, LoaderFunctionArgs } from '@remix-run/node'
 import { json, redirect } from '@remix-run/node'
-import { Form, useActionData } from '@remix-run/react'
+import { Form, Link, useActionData } from '@remix-run/react'
 
 import setCookie from 'set-cookie-parser'
 
 import { getSession, commitSession } from '~/sessions'
+import PasswordVisilibity from '~/components/ui/PasswordVisibility'
 
 interface ILoginError {
   email: string
@@ -96,27 +98,59 @@ export async function action({ request }: ActionFunctionArgs) {
 }
 
 export default function Login() {
+  const [currentPasswordVisible, setCurrentPasswordVisible] =
+    React.useState(false)
   const actionData = useActionData<typeof action>()
 
   return (
     <div id="login" className="prose prose-lg dark:prose-invert">
       <h2>Login</h2>
       <Form method="post">
-        <p>
-          <input type="email" name="email" />
-          {actionData?.errors?.email ? (
-            <em>{actionData?.errors.email}</em>
-          ) : null}
-        </p>
+        <div className="flex flex-col gap-4">
+          <label className="input input-bordered flex items-center gap-2">
+            Email
+            <input
+              type="email"
+              autoComplete="email"
+              name="email"
+              maxLength={255}
+              minLength={1}
+              required
+              className="grow"
+            />
+            {actionData?.errors?.email ? (
+              <em>{actionData?.errors.email}</em>
+            ) : null}
+          </label>
+          <label className="input input-bordered flex items-center gap-2">
+            Password
+            <input
+              type={currentPasswordVisible ? 'text' : 'password'}
+              autoComplete="current-password"
+              name="password"
+              maxLength={255}
+              minLength={1}
+              required
+              className="grow"
+            />
+            <button
+              onClick={() => setCurrentPasswordVisible(!currentPasswordVisible)}
+            >
+              <PasswordVisilibity enabled={currentPasswordVisible} />
+            </button>
+            {actionData?.errors?.password ? (
+              <em>{actionData?.errors.password}</em>
+            ) : null}
+          </label>
 
-        <p>
-          <input type="password" name="password" />
-          {actionData?.errors?.password ? (
-            <em>{actionData?.errors.password}</em>
-          ) : null}
-        </p>
+          <button type="submit" className="btn">
+            Login
+          </button>
 
-        <button type="submit">Login</button>
+          <Link to="/signup">
+            <button className="btn">Signup</button>
+          </Link>
+        </div>
       </Form>
     </div>
   )

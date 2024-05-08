@@ -10,7 +10,6 @@ import {
 
 import { getSession, retrieveSessionUserData } from '~/sessions'
 import PasswordVisilibity from '~/components/ui/PasswordVisibility'
-
 interface IUpdateError {
   email: string
   password: string
